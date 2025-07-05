@@ -1,5 +1,14 @@
-const markdownIt = require('markdown-it');
-
+const markdownIt = require("markdown-it");
+const markdownItAnchor = require('markdown-it-anchor');
+const markdownItFootnote = require('markdown-it-footnote');
+const markdownItAttrs = require('markdown-it-attrs');
+const markdownItSup = require('markdown-it-sup');
+const markdownItMark = require('markdown-it-mark');
+const markdownItAbbr = require('markdown-it-abbr');
+const markdownItContainer = require('markdown-it-container');
+const markdownItFigures = require('markdown-it-image-figures');
+const string = require('string')
+const sluglofi = s => string(s).slugify().toString()
 
 module.exports = function(eleventyConfig) {
 	// Markdown config
@@ -63,5 +72,6 @@ module.exports = function(eleventyConfig) {
   );
 
   eleventyConfig.setLibrary("md", md)
+
 
 }

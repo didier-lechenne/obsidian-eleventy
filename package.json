@@ -11,6 +11,9 @@
     "sync": "rsync -avz --progress --delete public/ accentgrave@ssh-accentgrave.alwaysdata.net:/home/accentgrave/radicalweb.test/",
     "deploy": "rm -r public && npm run build && npm run sync"
   },
+
+
+
   "keywords": [],
   "author": "Didier Lechenne",
   "license": "CCBYSA",
