@@ -1,15 +1,15 @@
-const markdownConfig = require("./_eleventy/config/markdown.js");
 const collectionsConfig = require("./_eleventy/config/collections.js");
+const markdownConfig = require("./_eleventy/config/markdown.js");
 const filtersConfig = require("./_eleventy/config/filters.js");
 const shortcodesConfig = require("./_eleventy/config/shortcodes.js");
 const transformsConfig = require("./_eleventy/config/transforms.js");
 const passthroughConfig = require("./_eleventy/config/passthrough.js");
-
+const yamlPlugin = require("_eleventy/config/yaml.js");
 
 
 const path = require("path");
 const fs = require("fs");
-const yaml = require("js-yaml");
+
 
 module.exports = function(eleventyConfig) {
   
@@ -29,6 +29,7 @@ module.exports = function(eleventyConfig) {
   transformsConfig(eleventyConfig);
   passthroughConfig(eleventyConfig);
 
+  eleventyConfig.addPlugin(yamlPlugin); 
   
   // === CONFIGURATION SERVEUR DE DEV ===
   
