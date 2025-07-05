@@ -1,0 +1,41 @@
+{
+  "title": "Mon Site avec Eleventy",
+  "description": "Un site statique généré avec Eleventy et syntaxe Obsidian",
+  "url": "https://monsite.com",
+  "author": {
+    "name": "Votre Nom",
+    "email": "contact@monsite.com",
+    "url": "https://monsite.com"
+  },
+  "social": [
+    {
+      "name": "GitHub",
+      "url": "https://github.com/username"
+    },
+    {
+      "name": "Twitter",
+      "url": "https://twitter.com/username"
+    }
+  ],
+  "navigation": [
+    {
+      "name": "Accueil",
+      "url": "/"
+    },
+    {
+      "name": "À propos",
+      "url": "/about/"
+    },
+    {
+      "name": "Blog",
+      "url": "/blog/"
+    },
+    {
+      "name": "Contact",
+      "url": "/contact/"
+    }
+  ],
+  "build": {
+    "timestamp": "{{ 'now' | date('iso') }}"
+  }
+}

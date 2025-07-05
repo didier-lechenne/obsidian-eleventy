@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if title %}{{ title }} | {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{{ description or site.description }}">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    
+    <!-- RSS Feed -->
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="/feed.xml">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{ title or site.title }}">
+    <meta property="og:description" content="{{ description or site.description }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    
+    <!-- Additional head content -->
+    {% block head %}{% endblock %}
+</head>
+<body class="{{ bodyClass }}">
+    
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="site-title">
+                    <h1>{{ site.title }}</h1>
+                </a>
+                
+                <!-- Navigation -->
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="/" {% if page.url == "/" %}class="current"{% endif %}>Accueil</a></li>
+                        <li><a href="/about/" {% if "/about/" in page.url %}class="current"{% endif %}>À propos</a></li>
+                        <li><a href="/blog/" {% if "/blog/" in page.url %}class="current"{% endif %}>Blog</a></li>
+                        <li><a href="/contact/" {% if "/contact/" in page.url %}class="current"{% endif %}>Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <!-- Mobile menu toggle -->
+                <button class="mobile-menu-toggle" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main content -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Page header -->
+            {% if title %}
+            <div class="page-header">
+                <h1 class="page-title">{{ title }}</h1>
+
+                {% if tags %}
+                <div class="page-tags">
+                    {% for tag in tags %}
+                        {% if tag != "blog" %}
+                        <span class="tag">{{ tag }}</span>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+            
+            <!-- Content -->
+            <div class="page-content">
+                {{ content | safe }}
+            </div>
+            
+            <!-- Page navigation -->
+            {% if collections.blog and tags and "blog" in tags %}
+            <nav class="page-nav">
+                {% set previousPost = collections.blog | getPreviousCollectionItem(page) %}
+                {% set nextPost = collections.blog | getNextCollectionItem(page) %}
+                
+                {% if previousPost or nextPost %}
+                <div class="nav-links">
+                    {% if previousPost %}
+                    <a href="{{ previousPost.url }}" class="nav-link nav-prev">
+                        ← {{ previousPost.data.title }}
+                    </a>
+                    {% endif %}
+                    
+                    {% if nextPost %}
+                    <a href="{{ nextPost.url }}" class="nav-link nav-next">
+                        {{ nextPost.data.title }} →
+                    </a>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </nav>
+            {% endif %}
+            
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                
+                <!-- Social links -->
+                {% if site.social %}
+                <div class="social-links">
+                    {% for social in site.social %}
+                    <a href="{{ social.url }}" target="_blank" rel="noopener" title="{{ social.name }}">
+                        {{ social.name }}
+                    </a>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script src="/assets/js/script.js"></script>
+    
+    <!-- Additional scripts -->
+    {% block scripts %}{% endblock %}
+    
+</body>
+</html>
