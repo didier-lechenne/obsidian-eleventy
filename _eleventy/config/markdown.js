@@ -66,7 +66,6 @@ module.exports = function(eleventyConfig) {
 
 
   // markdownify filter to parse frontmatter stuff
-  // don’t know why I need ?? "" …
   eleventyConfig.addFilter('markdownify', (markdownString) =>
     md.render(markdownString ?? "")
   );
