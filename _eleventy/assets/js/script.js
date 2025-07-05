@@ -5,32 +5,18 @@ import { pageMode } from "./utils/pageMode.js";
 
 // Fonction pour appliquer les styles selon le mode
 function applyPageMode(mode) {
-    let filename;
-    switch(mode) {
-        case 'print':
-            filename = 'print.js';
-            break;
-        case 'layout':
-            filename = 'layout.js';
-            break;
-        case 'print&layout':
-             filename = 'printLayout.js';
-            break;
-        case 'screen&layout':
-            filename = 'screenLayout.js';
-            break;
-        default:
-            filename = 'printLayout.js';
-    }
+ 
+    const cssLink = document.createElement('link');
+    cssLink.rel = 'stylesheet';
+    cssLink.href = `/assets/modes/${mode}.css`;
+    document.head.appendChild(cssLink);
 
-    fetch(`/assets/modes/${filename}`)
-        .then(response => response.text())
-        .then(js => {
-            const script = document.createElement('script');
-            script.textContent = js;
-            document.head.appendChild(script);
-        })
-        .catch(error => console.error('Erreur chargement mode:', error));
+    const script = document.createElement('script');
+    script.type = 'module'; // ou sans pour JS classique
+    script.src = `/assets/modes/${mode}.js`;
+    script.onload = () => console.log(`Mode ${mode} chargé`);
+    script.onerror = () => console.error(`Erreur chargement mode ${mode}`);
+    document.head.appendChild(script);
 }
 
 

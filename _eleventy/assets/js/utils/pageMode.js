@@ -8,7 +8,9 @@ export function getPageMode() {
     const params = getUrlParams();
 
     if (params.has('print') && params.has('layout')) {
-        return 'print&layout';
+        return 'printLayout';
+    } else if (params.has('screen') && params.has('layout')) { // ← MANQUANT
+        return 'screenLayout';
     } else if (params.has('print')) {
         return 'print';
     } else if (params.has('layout')) {
@@ -16,7 +18,7 @@ export function getPageMode() {
     } else if (params.has('screen')) {
         return 'screen';
     } else {
-        return 'print&layout'; // Mode par défaut
+        return 'printLayout';
     }
 }
 
