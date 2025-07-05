@@ -19,4 +19,8 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy({
     "_eleventy/assets/favicon.ico": "favicon.ico"
   });
+
+  eleventyConfig.addPassthroughCopy({
+    "_eleventy/assets/modes": "assets/modes"
+  });
 };
