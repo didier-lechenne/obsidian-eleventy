@@ -101,7 +101,6 @@ module.exports = function(eleventyConfig) {
   });
   
   // === CONFIGURATION DES DOSSIERS ===
-  
   return {
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
